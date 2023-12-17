@@ -87,3 +87,5 @@ The body should be the key value JSON pairs. My json dict be {
 Check whether it is a valid json pairs or not, using json validator. JSON_validator(https://jsonlint.com/) Paste the data into that, and see if it says valid or not. if yes, done.
 Go back to postman, Hit on send. We should get the response as output.
 
+### Create the Web files (home.html)
+Create the HTML template and connect it to the functions of the application of the model.

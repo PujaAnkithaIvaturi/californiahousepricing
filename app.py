@@ -14,6 +14,8 @@ def home():
 
 #creating a predict API, wherein using postman or other tools, to send a request to the app and get a output
 #Through predict_api on hitting it, the input we give should be given in json format that is stored in data key.
+
+#This function transforms the input given in the form, predicts the output
 @app.route('/predict_api', methods=['POST'])
 def predict_api():
     data=request.json['data']
@@ -23,6 +25,17 @@ def predict_api():
     output=regmodel.predict(new_data)
     print(output[0])
     return jsonify(output[0])
+
+
+#Creating and taking in the values inputted from the HTML Form
+@app.route('/predict',methods=['POST'])
+def predict():
+    #taking the input value (could be integer) from the form and converting them into float
+    data=[float(x) for x in request.form.values()]
+    final_input=scalar.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output=regmodel.predict(final_input)[0]
+    return render_template("home.html",prediction_text="The House Price Prediction in California is {}.".format(output))
 
 if __name__=="__main__":
     app.run(debug=True)
